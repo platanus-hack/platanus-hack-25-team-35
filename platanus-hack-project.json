@@ -1,5 +1,5 @@
 {
   "project-name": "Tata: Task and time assistant",
   "project-description-spanish": "Tata es una tecnologia digital para personas mayores y sus familias que amplifica la capacidad de memoria. Ayuda a entender documentos medicos, organizar medicamentos y recordatorios, y compartir informacion clave con sus seres queridos. Analiza recetas medicas y examenes, los explica en lenguaje simple y genera recordatorios personalizados para mejorar el acompañamiento y la autonomia de las personas mayores.",
-  "deploy-url": "app.vicevalds.dev"
+  "deploy-url": "https://app.vicevalds.dev"
 }
