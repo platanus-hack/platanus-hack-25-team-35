@@ -1,0 +1,64 @@
+[
+  {
+    "id": 1,
+    "timestamp_guardado": "2025-11-22T03:09:06.335402",
+    "texto_original": "Necesito que me anotes que el lunes 24 es el cumpleaños de mi hija Antonia. Además necesito conseguirme el número de Juanito Pérez porque me he acordado mucho de él y no sé cómo comunicarme con él. Lo último es que se me acabaron los limones.",
+    "item": {
+      "tipo": "Evento",
+      "fecha": "lunes 24",
+      "hora": null,
+      "descripcion": "Cumpleaños de mi hija Antonia",
+      "clasificacion": null,
+      "responsable_requerido": null,
+      "personas": [
+        "Antonia"
+      ],
+      "lugar": null
+    }
+  },
+  {
+    "id": 2,
+    "timestamp_guardado": "2025-11-22T03:09:06.335402",
+    "texto_original": "Necesito que me anotes que el lunes 24 es el cumpleaños de mi hija Antonia. Además necesito conseguirme el número de Juanito Pérez porque me he acordado mucho de él y no sé cómo comunicarme con él. Lo último es que se me acabaron los limones.",
+    "item": {
+      "tipo": "Recuerdo",
+      "fecha": null,
+      "hora": null,
+      "descripcion": "Conseguir el número de Juanito Pérez",
+      "clasificacion": "tarea",
+      "responsable_requerido": "Si",
+      "personas": [
+        "Juanito Pérez"
+      ],
+      "lugar": null
+    }
+  },
+  {
+    "id": 3,
+    "timestamp_guardado": "2025-11-22T03:09:06.335402",
+    "texto_original": "Necesito que me anotes que el lunes 24 es el cumpleaños de mi hija Antonia. Además necesito conseguirme el número de Juanito Pérez porque me he acordado mucho de él y no sé cómo comunicarme con él. Lo último es que se me acabaron los limones.",
+    "item": {
+      "tipo": "Recuerdo",
+      "fecha": null,
+      "hora": null,
+      "descripcion": "Comprar limones",
+      "clasificacion": "compra",
+      "responsable_requerido": "Si",
+      "personas": [],
+      "lugar": null
+    }
+  },
+  {
+    "id": 4,
+    "timestamp_guardado": "2025-11-22T03:14:33.812240",
+    "origen": "documento_medico",
+    "ruta_archivo": "pdfs/lab.pdf",
+    "item": {
+      "tipo": "examen",
+      "fecha": "2024-07-05",
+      "tipo_examen": "perfil bioquímico",
+      "resultado": "algunos valores fuera de rango",
+      "es_normal": false
+    }
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "nombre": null,
+  "edad": null,
+  "fecha_nacimiento": null,
+  "genero": null,
+  "condiciones_salud": [],
+  "medicamentos_cronicos": [],
+  "preferencias": {
+    "tratamiento": null,
+    "temas_favoritos": [],
+    "tono_respuesta": null
+  },
+  "familia": [
+    {
+      "nombre": "Francisca",
+      "relacion": "nieta"
+    }
+  ]
+}

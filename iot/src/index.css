@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "DD";
+  font-weight: 500;
+  font-display: block;
+  src: url(/fonts/dd.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/JetBrainsMono-Regular.woff2) format("woff2");
+}
+
+::selection {
+  background: var(--color-orange);
+  color: white;
+}
+
+@layer base {
+  :root {
+    --font-sans: "DD", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+      Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    /* Colors */
+    --color-orange: #ff4d00;
+    --color-red: #ff2b43;
+    --color-gray1: hsl(0 0% 99%);
+    --color-gray2: hsl(0 0% 97.3%);
+    --color-gray3: hsl(0 0% 95.1%);
+    --color-gray4: hsl(0 0% 93%);
+    --color-gray5: hsl(0 0% 90.9%);
+    --color-gray6: hsl(0 0% 88.7%);
+    --color-gray7: hsl(0 0% 85.8%);
+    --color-gray8: hsl(0 0% 78%);
+    --color-gray9: hsl(0 0% 56.1%);
+    --color-gray10: hsl(0 0% 52.3%);
+    --color-gray11: hsl(0 0% 43.5%);
+    --color-gray12: hsl(0 0% 9%);
+    --color-bg: var(--color-gray1);
+    --color-high-contrast: #000;
+    --color-low-contrast: #fff;
+    /* Radius */
+    --radius-12: 12px;
+    --radius-full: 9999px;
+    /* Motion */
+    --ease-swift: cubic-bezier(0.23, 0.88, 0.26, 0.92);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-bg);
+    color: var(--color-high-contrast);
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .user-select-none {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}
+

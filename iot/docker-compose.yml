@@ -1,0 +1,76 @@
+# Docker Compose para aplicación IoT con reproducción de audio
+# Flujos de audio disponibles:
+#   Flujo 1 (Frontend → vicevalds):
+#     1. Frontend graba audio y lo envía a vicevalds
+#     2. Vicevalds procesa y devuelve audio de respuesta
+#     3. Frontend descarga y lo envía al endpoint /api/audio/play
+#     4. El servidor reproduce el audio en los parlantes
+#   Flujo 2 (Recepción directa):
+#     1. Fuente externa envía audio a /api/audio/receive
+#     2. El servidor guarda y reproduce automáticamente el audio
+#
+# IMPORTANTE: Ajusta el UID (1000) según tu usuario antes de ejecutar (ejecuta: id -u)
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: iot-app
+    expose:
+      - "3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      # Variable requerida por el endpoint /api/audio/play para reproducir audio
+      # Conecta paplay y ffplay al servidor PulseAudio del host
+      # Ajustar PULSE_SERVER según tu UID (ejecuta: id -u)
+      - PULSE_SERVER=unix:/run/user/1000/pulse/native
+    volumes:
+      # Socket de PulseAudio del host (requerido por /api/audio/play)
+      # Permite reproducir audio en el sistema host desde el contenedor
+      # Nota: Cambia 1000 por tu UID si es diferente (ejecuta: id -u)
+      - /run/user/1000/pulse:/run/user/1000/pulse:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      # Directorio temporal para archivos de audio del endpoint /api/audio/play
+      # El endpoint guarda archivos temporalmente antes de reproducirlos
+      - ./temp:/app/temp
+      # Directorio permanente para audios recibidos del endpoint /api/audio/receive
+      # Los audios recibidos se guardan aquí y persisten entre reinicios
+      - ./uploads:/app/uploads
+    networks:
+      - iot-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  apache2:
+    image: httpd:2.4
+    container_name: iot-apache2
+    ports:
+      - "80:80"
+    volumes:
+      - ./apache2/apache2.conf:/usr/local/apache2/conf/httpd.conf:ro
+      - ./apache2/entrypoint.sh:/docker-entrypoint.sh:ro
+    networks:
+      - iot-network
+    restart: unless-stopped
+    entrypoint: ["/bin/sh", "/docker-entrypoint.sh"]
+    depends_on:
+      app:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+networks:
+  iot-network:
+    driver: bridge
+
